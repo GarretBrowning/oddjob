@@ -1,80 +1,192 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart.';
+import 'package:oddjob/login_page/login.dart';
+import 'package:oddjob/browsePage/browse_jobs.dart';
+import 'package:oddjob/postPage/post_jobs.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: LoginPage(),
     theme: themeData,
   ));
 }
 
 // BUILDING A MULTI-PAGE APPLICATION WITH DART's FLUTTER MOBILE FRAMEWORK (Instructional video, Youtube)
 final ThemeData themeData = ThemeData(
-  canvasColor: Colors.deepOrangeAccent,
+  canvasColor: Colors.white70,
   accentColor: Colors.black,
 );
 
-// Page 1 of App
+// LoginPage of App
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FlatButton(
+        child: RaisedButton(
           onPressed: () {
-            Navigator.push(context, PageTwo());
+            Navigator.push(context, MainMenu());
           },
-          child: Text("Go to Page Two"),
+          child: Text("Log In"),
         ),
       ),
     );
   }
 }
 
-// Page 2 Class
-class PageTwo extends MaterialPageRoute<Null>{
-  PageTwo() : super(builder: (BuildContext context) {
+// MainMenu Class
+class MainMenu extends MaterialPageRoute<Null> {
+  MainMenu() : super(builder: (BuildContext context) {
+
      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).canvasColor,
-          elevation: 1.0,
-        ),
-        body: Center(
-          child: RaisedButton(
-            onPressed: () {
-              Navigator.push(context, PageThree());
-           },
-           child: Text("Go to Page Three"),
-          ),
-        ),
+
+         body: Column(children: <Widget>[
+           Container(height: 280.0,), // Top of Screen padding, pushes buttons downwards
+
+           Row( // TEXT ROW 1
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: <Widget>[
+               Text(
+                 "Browse OddJobs",
+                 style: TextStyle(color: Colors.blueAccent, fontSize: 25),
+               ),
+               Text(
+                 "Post An OddJob",
+                 style: TextStyle(color: Colors.orangeAccent, fontSize: 25),
+               ),
+             ],
+           ),
+
+           Row( // BUTTON ROW 1
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: [
+               Container(
+                 color: Colors.orange,
+                 margin: EdgeInsets.all(25.0),
+                 child: RaisedButton(
+                   onPressed: () {
+                     Navigator.push(
+                       context,  // this material page route links the pages
+                       MaterialPageRoute(builder: (context) => BrowseJobPage()),
+                     );
+                   },
+                 ),
+               ),
+               Container(
+                 color: Colors.blue,
+                 margin: EdgeInsets.all(25.0),
+                 child: RaisedButton(
+                   onPressed: () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) => PostJobPage()),
+                     );
+                   },
+                 ),
+               ),
+             ],
+           ),
+
+           Row( // TEXT ROW 2
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: <Widget>[
+               Text(
+                 "Manage Your Account",
+                 style: TextStyle(color: Colors.purpleAccent, fontSize: 25),
+               ),
+               Text(
+                 "Help/Support",
+                 style: TextStyle(color: Colors.greenAccent, fontSize: 25),
+               ),
+             ],
+           ),
+
+           Row( // BUTTON ROW 2
+               mainAxisAlignment: MainAxisAlignment.spaceAround,
+               children: [
+                 Container(
+                   color: Colors.purple,
+                   margin: EdgeInsets.all(25.0),
+                   child: RaisedButton(
+                     onPressed: () {
+                       Navigator.push(context, ManageAccountPage());
+                     },
+                   ),
+                 ),
+                 Container(
+                   color: Colors.green,
+                   margin: EdgeInsets.all(25.0),
+                   child: RaisedButton(
+                     onPressed: () {
+                       Navigator.push(context, HelpSupportPage());
+                     },
+                   ),
+                 ),]
+           ),
+         ])
      );
   });
 }
 
-// Page 3 Class
-class PageThree extends MaterialPageRoute<Null> {
-  PageThree() : super(builder: (BuildContext context) {
+
+// ManageAccountPage Class
+class ManageAccountPage extends MaterialPageRoute<Null> {
+  ManageAccountPage() : super(builder: (BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Last Page!"),
-        backgroundColor: Theme.of(context).accentColor,
+        title: Text("Manage Your Account"),
+        backgroundColor: Theme
+            .of(context)
+            .accentColor,
         elevation: 2.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.close),
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
           )
         ],
       ),
       body: Center(
-        child: MaterialButton(
-          onPressed: (){
-            Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-          },
-          child: Text("Go Home!"),
-        )
+          child: MaterialButton(
+            onPressed: () {
+              Navigator.push(context, MainMenu());
+            },
+            child: Text("Go Home! (From Managing Your Account)"),
+          )
+      ),
+    );
+  });
+}
+
+
+// HelpSupportPage Class
+class HelpSupportPage extends MaterialPageRoute<Null> {
+  HelpSupportPage() : super(builder: (BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Help/Support!"),
+        backgroundColor: Theme
+            .of(context)
+            .accentColor,
+        elevation: 2.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ),
+      body: Center(
+          child: MaterialButton(
+            onPressed: () {
+              Navigator.push(context, MainMenu());
+            },
+            child: Text("Go Home! (From Help/Support)"),
+          )
       ),
     );
   });

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:oddjob/models/post.dart';
+import 'package:oddjob/utils/database_helper.dart';
+import 'package:intl/intl.dart';
 
 class PostJobPage extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     return PostJobPageState();
@@ -11,6 +16,8 @@ class PostJobPageState extends State<PostJobPage> {
 
   static var _priorities = ['High', 'Low'];
 
+  DatabaseHelper helper = DatabaseHelper();
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
@@ -18,6 +25,10 @@ class PostJobPageState extends State<PostJobPage> {
   Widget build(BuildContext context) {
 
     TextStyle textStyle = Theme.of(context).textTheme.subtitle1;
+
+    // later modify to empty the text boxes
+    //titleController.text = ;
+    //descriptionController.text = ;
 
     return Scaffold(
       appBar: AppBar(
@@ -71,10 +82,10 @@ class PostJobPageState extends State<PostJobPage> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextField(
-                controller: titleController,
+                controller: descriptionController,
                 style: textStyle,
                 onChanged: (value) {
-                  debugPrint('Something changed in Title Text Field');
+                  debugPrint('Something changed in description Text Field');
                 },
                 decoration: InputDecoration(
                     labelText: 'Description',
@@ -105,7 +116,7 @@ class PostJobPageState extends State<PostJobPage> {
                     ),
                   ),
 
-                  Container(width: 5.0,), // ADDS SEPARATION BETWEEN BUTTONS
+                  Container(width: 15.0,), // ADDS SEPARATION BETWEEN BUTTONS
 
                   Expanded(
                     child: RaisedButton( // DELETE BUTTON

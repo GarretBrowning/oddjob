@@ -3,6 +3,7 @@ import 'package:oddjob/login_page/login.dart';
 import 'package:oddjob/browsePage/browse_jobs.dart';
 import 'package:oddjob/postPage/post_jobs.dart';
 
+
 void main() {
   runApp(MaterialApp(
     home: LoginPage(),
@@ -15,24 +16,6 @@ final ThemeData themeData = ThemeData(
   canvasColor: Colors.white70,
   accentColor: Colors.black,
 );
-
-// LoginPage of App
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.push(context, MainMenu());
-          },
-          child: Text("Log In"),
-        ),
-      ),
-    );
-  }
-}
 
 // MainMenu Class
 class MainMenu extends MaterialPageRoute<Null> {

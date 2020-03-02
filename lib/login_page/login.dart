@@ -9,7 +9,10 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
 
-      home: new MyLoginPage(),
+        home: new MyLoginPage(),
+        routes: {
+          '/home_page': (context) => HomePage(),
+        }
     );
   }
 }
@@ -97,7 +100,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MainMenu());
+                        Navigator.pushNamed(context, '/home_page');
                       },
                       child: Center(
                         child: Text(

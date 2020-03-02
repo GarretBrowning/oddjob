@@ -37,9 +37,4 @@ class Post {
   set date(String newDate) {
       this._date = newDate;
   }
-
-  // Convert a Post object into a MAP object
-Map<String, dynamic> toMap(){
-
-  }
 }

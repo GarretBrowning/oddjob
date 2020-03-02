@@ -43,7 +43,7 @@ class BrowseJobPageState extends State<BrowseJobPage> {
   }
 
   ListView getPostListView() {
-     TextStyle titleStyle = Theme.of(context).textTheme.subtitle1;
+     TextStyle titleStyle = Theme.of(context).textTheme.subhead; // HAD TO CHANGE THIS FROM subtitle1 (Garret)
 
      return ListView.builder(
        itemCount: count,

@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   TabController _tabController;
 
-  List<String> _tabs = ["Browse Posts", "My Posts", "Settings"];
+  List<String> _tabs = ["Home", "My Posts", "Report"];
 
   @override void initState() {
     super.initState();

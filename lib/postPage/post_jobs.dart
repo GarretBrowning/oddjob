@@ -17,7 +17,7 @@ class PostJobPageState extends State<PostJobPage> {
   @override
   Widget build(BuildContext context) {
 
-    TextStyle textStyle = Theme.of(context).textTheme.subtitle1;
+    TextStyle textStyle = Theme.of(context).textTheme.subhead; // HAD TO CHANGE THIS FROM subtitle1 (Garret)
 
     return Scaffold(
       appBar: AppBar(

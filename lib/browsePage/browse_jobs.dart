@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oddjob/postPage/post_jobs.dart';
-import 'package:oddjob/main.dart';
 
 class BrowseJobPage extends StatefulWidget {
   @override
@@ -43,7 +42,7 @@ class BrowseJobPageState extends State<BrowseJobPage> {
   }
 
   ListView getPostListView() {
-     TextStyle titleStyle = Theme.of(context).textTheme.subtitle1;
+     TextStyle titleStyle = Theme.of(context).textTheme.subhead; // HAD TO CHANGE THIS FROM subtitle1 (Garret)
 
      return ListView.builder(
        itemCount: count,

@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart.';
+import 'package:flutter/material.dart';
 import 'package:oddjob/login_page/login.dart';
-import 'package:oddjob/browsePage/browse_jobs.dart';
-import 'package:oddjob/postPage/post_jobs.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,183 +11,49 @@ void main() {
 // BUILDING A MULTI-PAGE APPLICATION WITH DART's FLUTTER MOBILE FRAMEWORK (Instructional video, Youtube)
 final ThemeData themeData = ThemeData(
   canvasColor: Colors.white70,
-  accentColor: Colors.black,
+  accentColor: Colors.black
 );
 
-// LoginPage of App
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  TabController _tabController;
+
+  List<String> _tabs = ["Home", "My Posts", "Report"];
+
+  @override void initState() {
+    super.initState();
+    _tabController = new TabController(vsync: this, length: _tabs.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.push(context, MainMenu());
-          },
-          child: Text("Log In"),
+        appBar: new AppBar(
+          title: Text("OddJob"),
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: [
+              Tab(icon: Icon(Icons.find_in_page)),
+              Tab(icon: Icon(Icons.contacts)),
+              Tab(icon: Icon(Icons.settings)),
+            ],
+          ),
         ),
-      ),
+        body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            Center(child: Text("Browse Posts", style: Theme.of(context).textTheme.display1,)),
+            Center(child: Text("My Posts", style: Theme.of(context).textTheme.display1,)),
+            Center(child: Text("Settings", style: Theme.of(context).textTheme.display1,))
+          ],
+        )
     );
   }
-}
-
-// MainMenu Class
-class MainMenu extends MaterialPageRoute<Null> {
-  MainMenu() : super(builder: (BuildContext context) {
-
-     return Scaffold(
-
-         body: Column(children: <Widget>[
-           Container(height: 280.0,), // Top of Screen padding, pushes buttons downwards
-
-           Row( // TEXT ROW 1
-             mainAxisAlignment: MainAxisAlignment.spaceAround,
-             children: <Widget>[
-               Text(
-                 "Browse OddJobs",
-                 style: TextStyle(color: Colors.blueAccent, fontSize: 25),
-               ),
-               Text(
-                 "Post An OddJob",
-                 style: TextStyle(color: Colors.orangeAccent, fontSize: 25),
-               ),
-             ],
-           ),
-
-           Row( // BUTTON ROW 1
-             mainAxisAlignment: MainAxisAlignment.spaceAround,
-             children: [
-               Container(
-                 color: Colors.orange,
-                 margin: EdgeInsets.all(25.0),
-                 child: RaisedButton(
-                   onPressed: () {
-                     Navigator.push(
-                       context,  // this material page route links the pages
-                       MaterialPageRoute(builder: (context) => BrowseJobPage()),
-                     );
-                   },
-                 ),
-               ),
-               Container(
-                 color: Colors.blue,
-                 margin: EdgeInsets.all(25.0),
-                 child: RaisedButton(
-                   onPressed: () {
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context) => PostJobPage()),
-                     );
-                   },
-                 ),
-               ),
-             ],
-           ),
-
-           Row( // TEXT ROW 2
-             mainAxisAlignment: MainAxisAlignment.spaceAround,
-             children: <Widget>[
-               Text(
-                 "Manage Your Account",
-                 style: TextStyle(color: Colors.purpleAccent, fontSize: 25),
-               ),
-               Text(
-                 "Help/Support",
-                 style: TextStyle(color: Colors.greenAccent, fontSize: 25),
-               ),
-             ],
-           ),
-
-           Row( // BUTTON ROW 2
-               mainAxisAlignment: MainAxisAlignment.spaceAround,
-               children: [
-                 Container(
-                   color: Colors.purple,
-                   margin: EdgeInsets.all(25.0),
-                   child: RaisedButton(
-                     onPressed: () {
-                       Navigator.push(context, ManageAccountPage());
-                     },
-                   ),
-                 ),
-                 Container(
-                   color: Colors.green,
-                   margin: EdgeInsets.all(25.0),
-                   child: RaisedButton(
-                     onPressed: () {
-                       Navigator.push(context, HelpSupportPage());
-                     },
-                   ),
-                 ),]
-           ),
-         ])
-     );
-  });
-}
-
-
-// ManageAccountPage Class
-class ManageAccountPage extends MaterialPageRoute<Null> {
-  ManageAccountPage() : super(builder: (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Manage Your Account"),
-        backgroundColor: Theme
-            .of(context)
-            .accentColor,
-        elevation: 2.0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-        ],
-      ),
-      body: Center(
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.push(context, MainMenu());
-            },
-            child: Text("Go Home! (From Managing Your Account)"),
-          )
-      ),
-    );
-  });
-}
-
-
-// HelpSupportPage Class
-class HelpSupportPage extends MaterialPageRoute<Null> {
-  HelpSupportPage() : super(builder: (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Help/Support!"),
-        backgroundColor: Theme
-            .of(context)
-            .accentColor,
-        elevation: 2.0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-        ],
-      ),
-      body: Center(
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.push(context, MainMenu());
-            },
-            child: Text("Go Home! (From Help/Support)"),
-          )
-      ),
-    );
-  });
 }
 
 

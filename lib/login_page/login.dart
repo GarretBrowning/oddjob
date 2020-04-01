@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart.';
-import 'package:oddjob/main.dart';
-
-void main() => runApp(new LoginPage());
+import 'package:flutter/material.dart';
+import 'package:oddjob/homepage.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-
+        debugShowCheckedModeBanner: false,
         home: new MyLoginPage(),
         routes: {
           '/home_page': (context) => HomePage(),
@@ -25,7 +22,7 @@ class MyLoginPage extends StatefulWidget {
 class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +131,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Center(
-                          child: ImageIcon(AssetImage('assets/facebook.png')), // come back to this - for displaying image
+//                          child: ImageIcon(AssetImage('assets/facebook_logo.png')), // This looks bad so far... Revisit
                         ),
                         Center(
                           child: Text('Log in with Facebook',

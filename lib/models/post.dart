@@ -1,4 +1,3 @@
-
 class Post {
 
   int _id;

@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:oddjob/homepage.dart';
 
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new MyLoginPage(),
-        routes: {
-          '/home_page': (context) => HomePage(),
-        }
-    );
-  }
-}
-
-class MyLoginPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
   _MyLoginPageState createState() => new _MyLoginPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
+class _MyLoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,14 +74,16 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
                 ),
                 SizedBox(height: 40.0),
-                Container(
+                AnimatedContainer(
+                  duration: Duration(seconds: 2),
                   height: 40.0, // button height
+
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     shadowColor: Colors.deepOrangeAccent,
                     color: Colors.deepOrange,
                     elevation: 7.0,
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/home_page');
                       },

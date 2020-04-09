@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oddjob/postPage/post_jobs.dart';
+import 'package:oddjob/createPostPage/create_post.dart';
 
 class BrowseJobPage extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class BrowseJobPageState extends State<BrowseJobPage> {
         onPressed: () {
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PostJobPage()),
+              MaterialPageRoute(builder: (context) => CreatePost()),
           );
         },
 

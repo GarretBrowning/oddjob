@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:oddjob/main.dart';
+import 'package:oddjob/homepage.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

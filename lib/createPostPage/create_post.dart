@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 
-class PostJobPage extends StatefulWidget {
+class CreatePost extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return PostJobPageState();
+    return CreatePostState();
   }
 }
+// ToDo: Create Every Data Parameter For Creating A Post:
+// Post Title
+// Post Type (Ad/OddJob)
+// Description
+// Add Post Filter-Tags
+// Contract Start Time & Contract End Time
+// Set Price & Price Type
+// Create and Cancel Buttons
+// ** Ability To Add GPS Location & Images Coming Soon **
 
-class PostJobPageState extends State<PostJobPage> {
+class CreatePostState extends State<CreatePost> {
 
-  static var _priorities = ['High', 'Low'];
+  //This will allow the user to either create an Ad, or An OddJob
+  static var _priorities = ['Ad', 'OddJob'];
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -17,11 +27,11 @@ class PostJobPageState extends State<PostJobPage> {
   @override
   Widget build(BuildContext context) {
 
-    TextStyle textStyle = Theme.of(context).textTheme.subhead; // HAD TO CHANGE THIS FROM subtitle1 (Garret)
+    TextStyle textStyle = Theme.of(context).textTheme.subhead;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post a Job'),
+        title: Text('Create New Post'),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
@@ -40,7 +50,7 @@ class PostJobPageState extends State<PostJobPage> {
 
                   style: textStyle,
 
-                  value: 'Low',
+                  value: 'Ad',
 
                   onChanged: (valueSelectedByUser) {
                     setState(() {});  // possibly do something with this
@@ -93,10 +103,10 @@ class PostJobPageState extends State<PostJobPage> {
                 children: <Widget>[
                   Expanded(
                     child: RaisedButton( // POST JOB BUTTON
-                      color: Theme.of(context).primaryColorDark,
+                      color: Theme.of(context).primaryColor,
                       textColor: Theme.of(context).primaryColorLight,
                       child: Text(
-                        'Post Job',
+                        'Create',
                         textScaleFactor: 1.5,
                       ),
                       onPressed: () {
@@ -112,7 +122,7 @@ class PostJobPageState extends State<PostJobPage> {
                       color: Theme.of(context).primaryColorDark,
                       textColor: Theme.of(context).primaryColorLight,
                       child: Text(
-                        'Delete',
+                        'Cancel',
                         textScaleFactor: 1.5,
                       ),
                       onPressed: () {

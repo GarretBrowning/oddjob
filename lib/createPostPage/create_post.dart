@@ -1,34 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:oddjob/models/posts_list._model.dart';
+import 'package:oddjob/widgets/post.dart';
+import 'package:provider/provider.dart';
+
+final samplePostForTesting = Post(
+  title: 'This is the post title',
+  description: 'This is the description of the post',
+  price: '369',
+  postType: true,
+  priceType: false,
+);
 
 class CreatePost extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return CreatePostState();
-  }
+  _CreatePostState createState() => _CreatePostState();
 }
-// ToDo: Create Every Data Parameter For Creating A Post:
-// Post Title
-// Post Type (Ad/OddJob)
-// Description
-// Add Post Filter-Tags
-// Contract Start Time & Contract End Time
-// Set Price & Price Type
-// Create and Cancel Buttons
-// ** Ability To Add GPS Location & Images Coming Soon **
 
-class CreatePostState extends State<CreatePost> {
+class _CreatePostState extends State<CreatePost> {
 
-  //This will allow the user to either create an Ad, or An OddJob
-  static var _priorities = ['Ad', 'OddJob'];
+  // Constructor variables to set later to pass to Post.dart
+  String title;
+  String description;
+  String price;
+  bool postType;
+  bool priceType;
+
+  // This will allow the user to either create an Ad, or An OddJob:
+  String postOptionsDropdownValue = 'Work For Hire';
+  static var _postOptions = ['Work For Hire', 'Personal OddJob'];
+
+  //This will allow the user to either charge a Flat Fee, or Per Hour:
+  String priceOptionsDropdownValue = 'Flat Fee';
+  static var _priceOptions = ['Flat Fee', 'Per Hour'];
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     TextStyle textStyle = Theme.of(context).textTheme.subhead;
-
+    Post createdPost;
     return Scaffold(
       appBar: AppBar(
         title: Text('Create New Post'),
@@ -37,28 +49,24 @@ class CreatePostState extends State<CreatePost> {
         padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
         child: ListView(
           children: <Widget>[
-
-            // FIRST ELEMENT - Priorities dropdown menu
+            /// Priorities dropdown menu:
             ListTile(
               title: DropdownButton(
-                items: _priorities.map((String dropDownStringItem) {
-                  return DropdownMenuItem<String> (
-                    value: dropDownStringItem,
-                    child: Text(dropDownStringItem),
+                value: postOptionsDropdownValue,
+                items: _postOptions.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
                   );
                 }).toList(),
-
-                  style: textStyle,
-
-                  value: 'Ad',
-
-                  onChanged: (valueSelectedByUser) {
-                    setState(() {});  // possibly do something with this
-                  }
+                onChanged: (String newValue) {
+                  setState(() {
+                    postOptionsDropdownValue = newValue;
+                  });
+                },
               ),
             ),
-
-            // SECOND ELEMENT - Title text field
+            /// Title text field:
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextField(
@@ -66,9 +74,10 @@ class CreatePostState extends State<CreatePost> {
                 style: textStyle,
                 onChanged: (value) {
                   debugPrint('Something changed in Title Text Field');
+                  title = value;
                 },
                 decoration: InputDecoration(
-                  labelText: 'Title',
+                  labelText: 'Title:',
                   labelStyle: textStyle,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0)
@@ -76,18 +85,17 @@ class CreatePostState extends State<CreatePost> {
                 ),
               ),
             ),
-
-            // THIRD ELEMENT - Description text field
+            /// Description text field:
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextField(
-                controller: titleController,
+                controller: descriptionController,
                 style: textStyle,
                 onChanged: (value) {
                   debugPrint('Something changed in Title Text Field');
                 },
                 decoration: InputDecoration(
-                    labelText: 'Description',
+                    labelText: 'Description:',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0)
@@ -95,38 +103,80 @@ class CreatePostState extends State<CreatePost> {
                 ),
               ),
             ),
-
-            // FOURTH ELEMENT - Buttons
+            /// Price text field and Price Type Selector dropdown menu:
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Row(
                 children: <Widget>[
+                  /// Price text field:
                   Expanded(
-                    child: RaisedButton( // POST JOB BUTTON
-                      color: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).primaryColorLight,
-                      child: Text(
-                        'Create',
-                        textScaleFactor: 1.5,
-                      ),
-                      onPressed: () {
-                        // Implement later
+                    child: TextField(
+                      controller: priceController,
+                      style: textStyle,
+                      onChanged: (value) {
+                        debugPrint('Something changed in Title Text Field');
+                        price = value;
                       },
+                      decoration: InputDecoration(
+                          labelText: r'Price ($):',
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      ),
                     ),
                   ),
-
-                  Container(width: 5.0,), // ADDS SEPARATION BETWEEN BUTTONS
-
+                  /// Price Type Selector dropdown menu:
                   Expanded(
-                    child: RaisedButton( // DELETE BUTTON
+                    child: ListTile(
+                      title: DropdownButton(
+                        value: priceOptionsDropdownValue,
+                        items: _priceOptions.map<DropdownMenuItem<String>>((
+                            String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            priceOptionsDropdownValue = newValue;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            /// Create & Cancel Buttons:
+            Padding(
+              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              child: Row(
+                children: <Widget>[
+                  /// Create Post button:
+                  Consumer<PostListModel>(
+                    builder: (context, model, widget) => Expanded(
+                    child: RaisedButton(
+                      color: Theme.of(context).primaryColor,
+                      textColor: Theme.of(context).primaryColorLight,
+                      child: Text('Create', textScaleFactor: 1.5),
+                      onPressed: () async {
+                        await createPost(title, '', price, true, false, model);
+                        Navigator.pushNamed(context, '/home_page');
+                      },
+                    ),
+                  )
+                  ),
+                  Container(width: 5.0), // ADDS SEPARATION BETWEEN BUTTONS
+                  /// Cancel button:
+                  Expanded(
+                    child: RaisedButton(
                       color: Theme.of(context).primaryColorDark,
                       textColor: Theme.of(context).primaryColorLight,
-                      child: Text(
-                        'Cancel',
-                        textScaleFactor: 1.5,
-                      ),
+                      child: Text('Cancel', textScaleFactor: 1.5),
                       onPressed: () {
-                        // Implement later
+                        Navigator.pop(context);
                       },
                     ),
                   ),
@@ -138,4 +188,10 @@ class CreatePostState extends State<CreatePost> {
       ),
     );
   }
+}
+
+
+Future createPost(String title, String description, String price, bool postType, bool priceType, model) {
+  final post =  Post(title: title,  price: price, description: description, postType: postType, priceType: priceType);
+  return model.add(post);
 }

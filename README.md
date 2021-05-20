@@ -1,4 +1,4 @@
-# oddjob
+# OddJob
 
 Senior Project - University of Jamestown 2020
 

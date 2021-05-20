@@ -6,6 +6,7 @@ class CreatePost extends StatefulWidget {
     return CreatePostState();
   }
 }
+
 // ToDo: Create Every Data Parameter For Creating A Post:
 // Post Title
 // Post Type (Ad/OddJob)
@@ -19,6 +20,7 @@ class CreatePost extends StatefulWidget {
 class CreatePostState extends State<CreatePost> {
 
   //This will allow the user to either create an Ad, or An OddJob
+  String valueChoose;
   static var _priorities = ['Ad', 'OddJob'];
 
   TextEditingController titleController = TextEditingController();
@@ -41,20 +43,20 @@ class CreatePostState extends State<CreatePost> {
             // FIRST ELEMENT - Priorities dropdown menu
             ListTile(
               title: DropdownButton(
-                items: _priorities.map((String dropDownStringItem) {
-                  return DropdownMenuItem<String> (
-                    value: dropDownStringItem,
-                    child: Text(dropDownStringItem),
+              style: textStyle,
+              hint: Text("Select Job Type"),
+              value: valueChoose,
+              onChanged: (newValue) {
+                setState(() {
+                  valueChoose = newValue;
+                });  // possibly do something with this
+              },
+              items: _priorities.map((dropDownItem) {
+                return DropdownMenuItem(
+                  value: dropDownItem,
+                  child: Text(dropDownItem),
                   );
                 }).toList(),
-
-                  style: textStyle,
-
-                  value: 'Ad',
-
-                  onChanged: (valueSelectedByUser) {
-                    setState(() {});  // possibly do something with this
-                  }
               ),
             ),
 
@@ -68,7 +70,7 @@ class CreatePostState extends State<CreatePost> {
                   debugPrint('Something changed in Title Text Field');
                 },
                 decoration: InputDecoration(
-                  labelText: 'Title',
+                  labelText: 'Enter Title',
                   labelStyle: textStyle,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0)
@@ -81,13 +83,13 @@ class CreatePostState extends State<CreatePost> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextField(
-                controller: titleController,
+                controller: descriptionController,
                 style: textStyle,
                 onChanged: (value) {
                   debugPrint('Something changed in Title Text Field');
                 },
                 decoration: InputDecoration(
-                    labelText: 'Description',
+                    labelText: 'Enter Description',
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0)
@@ -126,7 +128,7 @@ class CreatePostState extends State<CreatePost> {
                         textScaleFactor: 1.5,
                       ),
                       onPressed: () {
-                        // Implement later
+                        Navigator.pushNamed(context, '/home_page');
                       },
                     ),
                   ),

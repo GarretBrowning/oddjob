@@ -8,13 +8,9 @@ class CreatePost extends StatefulWidget {
 }
 
 // ToDo: Create Every Data Parameter For Creating A Post:
-// Post Title
-// Post Type (Ad/OddJob)
-// Description
 // Add Post Filter-Tags
 // Contract Start Time & Contract End Time
 // Set Price & Price Type
-// Create and Cancel Buttons
 // ** Ability To Add GPS Location & Images Coming Soon **
 
 class CreatePostState extends State<CreatePost> {

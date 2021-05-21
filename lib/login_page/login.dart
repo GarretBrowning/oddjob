@@ -119,7 +119,7 @@ class _MyLoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Center(
-//                          child: ImageIcon(AssetImage('assets/facebook_logo.png')), // This looks bad so far... Revisit
+//                          child: ImageIcon(AssetImage('assets/facebook_logo.png')), // Going to need to find and used a better logo than this for future implementation.
                         ),
                         Center(
                           child: Text('Log in with Facebook',

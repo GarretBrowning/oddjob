@@ -20,15 +20,15 @@ class _MyLoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(60.0, 170.0, 0.0, 0.0),
                   child: Text(
                     'OddJob',
-                    style: TextStyle(
-                        fontSize: 80.0, fontWeight: FontWeight.bold
-                    ),
-                  ),)
+                    style:
+                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                  ),
+                )
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top:35.0, left: 20.0, right: 20.0),
+            padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
             child: Column(
               children: <Widget>[
                 TextField(
@@ -37,40 +37,38 @@ class _MyLoginPageState extends State<LoginPage> {
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey
-                      ),
+                          color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.deepOrangeAccent)
-                      )
-                  ),
+                          borderSide:
+                              BorderSide(color: Colors.deepOrangeAccent))),
                 ),
-                SizedBox(height: 20.0,),
+                SizedBox(
+                  height: 20.0,
+                ),
                 TextField(
                   decoration: InputDecoration(
                       labelText: 'PASSWORD',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey
-                      ),
+                          color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.deepOrange)
-                      )
-                  ),
+                          borderSide: BorderSide(color: Colors.deepOrange))),
                   obscureText: true,
                 ),
-                SizedBox(height: 5.0,),
+                SizedBox(
+                  height: 5.0,
+                ),
                 Container(
                   alignment: Alignment(1.0, 0.0),
-                  padding: EdgeInsets.only(top:15.0, left: 20.0),
+                  padding: EdgeInsets.only(top: 15.0, left: 20.0),
                   child: InkWell(
                     child: Text('Forgot Password?',
                         style: TextStyle(
                             color: Colors.deepOrange,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Montserrat',
-                            decoration: TextDecoration.underline
-                        )),
+                            decoration: TextDecoration.underline)),
                   ),
                 ),
                 SizedBox(height: 40.0),
@@ -94,8 +92,7 @@ class _MyLoginPageState extends State<LoginPage> {
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
-                              fontSize: 15.0
-                          ),
+                              fontSize: 15.0),
                         ),
                       ),
                     ),
@@ -110,23 +107,22 @@ class _MyLoginPageState extends State<LoginPage> {
                         border: Border.all(
                             color: Colors.black,
                             style: BorderStyle.solid,
-                            width: 1.5
-                        ),
+                            width: 1.5),
                         color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(20.0)
-                    ),
+                        borderRadius: BorderRadius.circular(20.0)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Center(
 //                          child: ImageIcon(AssetImage('assets/facebook_logo.png')), // Going to need to find and used a better logo than this for future implementation.
-                        ),
+                            ),
                         Center(
-                          child: Text('Log in with Facebook',
+                          child: Text(
+                            'Log in with Facebook',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Montserrat'
-                            ),),
+                                fontFamily: 'Montserrat'),
+                          ),
                         )
                       ],
                     ),
@@ -141,20 +137,19 @@ class _MyLoginPageState extends State<LoginPage> {
             children: <Widget>[
               Text(
                 'New to OddJob?',
-                style: TextStyle(
-                    fontFamily: 'Montserrat'
-                ),
+                style: TextStyle(fontFamily: 'Montserrat'),
               ),
               SizedBox(width: 5.0),
               InkWell(
                 onTap: () {},
-                child: Text('Sign-Up!',
+                child: Text(
+                  'Sign-Up!',
                   style: TextStyle(
                       color: Colors.deepOrange,
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline
-                  ),),
+                      decoration: TextDecoration.underline),
+                ),
               )
             ],
           )

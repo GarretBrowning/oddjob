@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Colors.deepOrangeAccent,
-          primaryColorLight: Colors.white,
-          primaryColorDark: Colors.black54,
-        ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.deepOrangeAccent,
+        primaryColorLight: Colors.white,
+        primaryColorDark: Colors.black54,
+      ),
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the LoginScreen page.
@@ -28,5 +28,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

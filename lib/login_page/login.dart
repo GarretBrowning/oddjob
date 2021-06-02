@@ -114,7 +114,8 @@ class _MyLoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Center(
-//                          child: ImageIcon(AssetImage('assets/facebook_logo.png')), // Going to need to find and used a better logo than this for future implementation.
+                          // Going to need to find and used a better logo than this for future implementation.
+                          // child: ImageIcon(AssetImage('assets/facebook_logo.png')),
                             ),
                         Center(
                           child: Text(

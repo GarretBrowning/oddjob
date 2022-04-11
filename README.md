@@ -1,4 +1,4 @@
-# OddJob
+# OddJob (Unfinished Prototype)
 
 Senior Project - University of Jamestown 2020
 
